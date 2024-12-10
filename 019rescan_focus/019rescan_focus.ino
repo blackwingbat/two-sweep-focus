@@ -51,9 +51,11 @@ using namespace ControlTableItem;
 void setup() {
   // put your setup code here, to run once:
   
+  Serial.begin(115200);
+
   // Use UART port of DYNAMIXEL Shield to debug.
   DEBUG_SERIAL.begin(115200);
-  while(!DEBUG_SERIAL);
+  //while(!DEBUG_SERIAL);
 
   // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
@@ -62,9 +64,11 @@ void setup() {
   // Get DYNAMIXEL information
   dxl.ping(DXL_ID1);
 
+  pinMode(lmt_swt, INPUT);
+
   // Turn off torque when configuring items in EEPROM area
   dxl.torqueOff(DXL_ID1);
-  dxl.setOperatingMode(DXL_ID1, OP_POSITION);
+  dxl.setOperatingMode(DXL_ID1, OP_VELOCITY);
   dxl.torqueOn(DXL_ID1);
 
   // Get DYNAMIXEL information
