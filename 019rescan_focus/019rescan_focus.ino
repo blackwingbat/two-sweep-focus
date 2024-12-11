@@ -41,7 +41,7 @@
 #define lmt_swt 16
 
 const uint8_t DXL_ID1 = 1, DXL_ID2 = 2;
-const float DXL_PROTOCOL_VERSION = 2.0;
+const float DXL_PROTOCOL_VERSION = 1.0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 
@@ -97,6 +97,8 @@ void setup() {
   delay(1300);//center
   dxl.setGoalVelocity(DXL_ID1, 1024);
   delay(200); 
+  sudut=150;
+  dxl.setGoalPosition(DXL_ID2, sudut, UNIT_DEGREE);
 }
 
 void awal(){
@@ -163,6 +165,8 @@ void loop() {
         dxl.setGoalPosition(DXL_ID2, imili);
       else if(isudut==1)
         dxl.setGoalPosition(DXL_ID2, imili+0.3);
+      else if(isudut==2)
+        dxl.setGoalPosition(DXL_ID2, imili-0.3);    
     }
 
 
